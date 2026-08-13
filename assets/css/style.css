@@ -306,7 +306,7 @@ h1, h2, h3, h4, h5, p { margin: 0; }
   font-family: "Space Grotesk", sans-serif; font-weight: 600; font-style: italic; font-size: 14px; letter-spacing: .01em;
 }
 .split-media .panel-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 22px; }
-.split-media img { width: 100%; }
+.split-media img { width: 100%; height: 100%; object-fit: contain; }
 .split-media .cap { margin-top: 10px; font-size: 12.5px; font-weight: 700; color: var(--muted); text-align: center; padding-bottom: 16px; }
 
 .split-text { display: flex; flex-direction: column; }
@@ -359,9 +359,24 @@ table.spec-table th, table.spec-table td { border: 1px solid var(--border); padd
 table.spec-table thead th { background: var(--bg-alt); color: var(--ink); font-weight: 700; text-align: center; }
 table.spec-table tbody th { background: var(--bg-alt); color: var(--ink); font-weight: 700; width: 34%; white-space: nowrap; }
 table.spec-table tbody td { color: var(--body); }
+.spec-table-scroll { overflow-x: auto; }
+.spec-table-scroll table.spec-table { min-width: 1180px; }
+.spec-table-scroll table.spec-table tbody th { width: auto; white-space: normal; }
+
+/* Part-number breakdown diagram (e.g. 서보모터 제품형식) */
+.partcode-row { display: flex; gap: 22px; margin-top: 24px; flex-wrap: wrap; }
+.partcode-item { flex: 1; min-width: 130px; text-align: center; }
+.partcode-item .code-box {
+  background: var(--blue); color: var(--white); font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 15px;
+  padding: 13px 8px; border-radius: var(--radius-sm);
+}
+.partcode-item .connector { width: 1px; height: 22px; background: var(--blue-100); margin: 0 auto; }
+.partcode-item .code-label { font-weight: 700; color: var(--ink); font-size: 12.5px; margin-bottom: 8px; }
+.partcode-item .code-desc { font-size: 11.5px; color: var(--body); line-height: 1.7; }
 
 /* Equipment photo grid (e.g. HX2.0 응용장비: photo + caption per item) */
 .equip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.equip-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
 .equip-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; text-align: center; transition: all .15s; }
 .equip-item:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .equip-item .thumb { height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
@@ -414,10 +429,13 @@ table.spec-table tbody td { color: var(--body); }
   .intro-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
   .equip-grid { grid-template-columns: repeat(2, 1fr); }
+  .equip-grid.cols-6 { grid-template-columns: repeat(3, 1fr); }
   .detail-hero .grid { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 30px; }
   .spec-table-grid { grid-template-columns: 1fr; }
+  .partcode-row { gap: 14px; }
+  .partcode-item { min-width: calc(33.33% - 10px); }
 }
 @media (max-width: 720px) {
   .gnb { position: fixed; top: var(--header-h); left: 0; right: 0; background: var(--navy); flex-direction: column; gap: 0; max-height: 0; overflow: hidden; transition: max-height .25s; }
@@ -427,6 +445,7 @@ table.spec-table tbody td { color: var(--body); }
   .spec-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .equip-grid { grid-template-columns: 1fr; }
+  .equip-grid.cols-6 { grid-template-columns: repeat(2, 1fr); }
   .app-card, .app-card.reverse { flex-direction: column; }
   .app-card-img { width: 100%; }
   .section { padding: 64px 0; }
