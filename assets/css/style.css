@@ -232,7 +232,17 @@ h1, h2, h3, h4, h5, p { margin: 0; }
   font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .05em; color: #cfe8ff;
   background: linear-gradient(0deg, rgba(13,30,61,.85), transparent);
 }
-@media (max-width: 1180px) { .hero-video { display: none; } }
+@media (max-width: 1180px) {
+  .hero { flex-direction: column; align-items: stretch; }
+  .hero .container { order: 1; }
+  .hero-video {
+    position: static;
+    order: 2;
+    width: calc(100% - 64px);
+    max-width: 440px;
+    margin: 0 auto 48px;
+  }
+}
 
 .video-link {
   display: inline-flex; align-items: center; gap: 9px;
