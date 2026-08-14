@@ -212,7 +212,8 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 .hero-chips a:hover { background: rgba(127,196,255,.12); border-color: var(--blue-sky); }
 
 .hero-video {
-  position: absolute; top: 130px; right: 60px; z-index: 3;
+  position: absolute; top: 130px; z-index: 3;
+  right: calc(max(0px, (100vw - var(--container)) / 2) + 32px);
   width: 400px; max-width: 34vw;
   aspect-ratio: 16/9;
   border-radius: var(--radius-md);
